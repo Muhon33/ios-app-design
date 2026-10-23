@@ -1,0 +1,4 @@
+schema_version: "1.1"
+name: habit-tracker-today
+expected_outcome: |
+  A native-looking iPhone Today screen for Ripple: large title, today's habits with quick check-off controls, a visible streak, a tab bar, realistic habit names, light and dark mode.

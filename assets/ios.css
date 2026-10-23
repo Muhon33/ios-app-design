@@ -1,0 +1,477 @@
+/* ios.css — iOS 26 (Liquid Glass) design tokens + components for HTML mockups.
+   1 CSS px = 1 iOS point. Values come from Apple's HIG (colors, type scale, sizes).
+   Theme: add data-theme="dark" to <html> (template.html does this from ?theme=dark). */
+
+@import url("https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400..800&display=swap");
+
+/* ---------- tokens: light ---------- */
+:root {
+  --font: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display", "Inter", system-ui, sans-serif;
+  --font-rounded: ui-rounded, "SF Pro Rounded", "Inter", system-ui, sans-serif;
+  --font-serif: ui-serif, "New York", Georgia, serif;
+  --font-mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+
+  /* system colors (iOS 26, default light) */
+  --red: #FF383C; --orange: #FF8D28; --yellow: #FFCC00; --green: #34C759; --mint: #00C8B3;
+  --teal: #00C3D0; --cyan: #00C0E8; --blue: #0088FF; --indigo: #6155F5; --purple: #CB30E0;
+  --pink: #FF2D55; --brown: #AC7F5E;
+  --gray: #8E8E93; --gray2: #AEAEB2; --gray3: #C7C7CC; --gray4: #D1D1D6; --gray5: #E5E5EA; --gray6: #F2F2F7;
+
+  --accent: var(--blue);            /* app tint: override per app (one accent only) */
+  --on-accent: #FFFFFF;
+
+  /* labels */
+  --label: #000000;
+  --label-2: rgba(60, 60, 67, 0.60);
+  --label-3: rgba(60, 60, 67, 0.30);
+  --label-4: rgba(60, 60, 67, 0.18);
+  --placeholder: rgba(60, 60, 67, 0.30);
+  --link: var(--accent);
+
+  /* backgrounds */
+  --bg: #FFFFFF;          --bg-2: #F2F2F7;        --bg-3: #FFFFFF;
+  --bg-grouped: #F2F2F7;  --bg-grouped-2: #FFFFFF; --bg-grouped-3: #F2F2F7;
+
+  /* fills (for controls on top of backgrounds) */
+  --fill: rgba(120, 120, 128, 0.20);
+  --fill-2: rgba(120, 120, 128, 0.16);
+  --fill-3: rgba(118, 118, 128, 0.12);
+  --fill-4: rgba(116, 116, 128, 0.08);
+
+  --separator: rgba(60, 60, 67, 0.29);
+  --separator-opaque: #C6C6C8;
+
+  /* Liquid Glass (regular) */
+  --glass-bg: rgba(255, 255, 255, 0.62);
+  --glass-border: rgba(255, 255, 255, 0.75);
+  --glass-shadow: 0 8px 28px rgba(0, 0, 0, 0.10), 0 1px 3px rgba(0, 0, 0, 0.06);
+  --glass-highlight: inset 0 1px 0 rgba(255, 255, 255, 0.9), inset 0 -1px 0 rgba(0, 0, 0, 0.03);
+  --glass-selected: rgba(0, 0, 0, 0.06);
+
+  /* shape + space */
+  --r-xs: 6px; --r-sm: 10px; --r-md: 14px; --r-lg: 20px; --r-xl: 26px; --r-sheet: 38px;
+  --r-group: 26px;          /* inset grouped list sections (iOS 26) */
+  --margin: 16px;           /* standard side margin (use 20px on Pro Max) */
+  --s1: 4px; --s2: 8px; --s3: 12px; --s4: 16px; --s5: 20px; --s6: 24px; --s8: 32px; --s10: 40px;
+
+  --safe-top: 62px;         /* status bar + Dynamic Island */
+  --safe-bottom: 34px;      /* home indicator */
+}
+
+/* ---------- tokens: dark ---------- */
+:root[data-theme="dark"] {
+  --red: #FF4245; --orange: #FF9230; --yellow: #FFD600; --green: #30D158; --mint: #00DAC3;
+  --teal: #00D2E0; --cyan: #3CD3FE; --blue: #0091FF; --indigo: #6D7CFF; --purple: #DB34F2;
+  --pink: #FF375F; --brown: #B78A66;
+  --gray: #8E8E93; --gray2: #636366; --gray3: #48484A; --gray4: #3A3A3C; --gray5: #2C2C2E; --gray6: #1C1C1E;
+
+  --label: #FFFFFF;
+  --label-2: rgba(235, 235, 245, 0.60);
+  --label-3: rgba(235, 235, 245, 0.30);
+  --label-4: rgba(235, 235, 245, 0.16);
+  --placeholder: rgba(235, 235, 245, 0.30);
+
+  --bg: #000000;          --bg-2: #1C1C1E;        --bg-3: #2C2C2E;
+  --bg-grouped: #000000;  --bg-grouped-2: #1C1C1E; --bg-grouped-3: #2C2C2E;
+
+  --fill: rgba(120, 120, 128, 0.36);
+  --fill-2: rgba(120, 120, 128, 0.32);
+  --fill-3: rgba(118, 118, 128, 0.24);
+  --fill-4: rgba(116, 116, 128, 0.18);
+
+  --separator: rgba(84, 84, 88, 0.60);
+  --separator-opaque: #38383A;
+
+  --glass-bg: rgba(44, 44, 46, 0.58);
+  --glass-border: rgba(255, 255, 255, 0.10);
+  --glass-shadow: 0 8px 28px rgba(0, 0, 0, 0.45);
+  --glass-highlight: inset 0 1px 0 rgba(255, 255, 255, 0.12);
+  --glass-selected: rgba(255, 255, 255, 0.12);
+}
+
+/* ---------- page / board ---------- */
+* { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+html, body { margin: 0; }
+body.board {
+  min-height: 100vh; padding: 40px; display: flex; flex-wrap: wrap; gap: 48px;
+  justify-content: center; align-items: flex-start;
+  background: #E9E9EE; font-family: var(--font); -webkit-font-smoothing: antialiased;
+}
+:root[data-theme="dark"] body.board { background: #121214; }
+.board-label { width: 402px; margin: 0 0 10px; font: 600 13px/1.3 var(--font); color: #6E6E73; }
+body.bare { padding: 0; display: block; background: var(--bg); }   /* ?bare : screen only */
+body.bare .board-label { display: none; }
+body.bare .frame-wrap + .frame-wrap { display: none; }
+
+/* ---------- device ---------- */
+.iphone {
+  position: relative; width: 402px; height: 874px; overflow: hidden;
+  border-radius: 55px; background: var(--bg); color: var(--label);
+  font: 400 17px/22px var(--font); letter-spacing: -0.43px;
+  -webkit-font-smoothing: antialiased;
+  box-shadow: 0 0 0 11px #1C1C1E, 0 0 0 12px #3A3A3C, 0 30px 60px rgba(0, 0, 0, 0.25);
+}
+.iphone.grouped { background: var(--bg-grouped); }
+.iphone.pro-max { width: 440px; height: 956px; --margin: 20px; }
+body.bare .iphone { border-radius: 0; box-shadow: none; }
+
+.screen {                          /* scrolling content layer */
+  position: absolute; inset: 0; overflow-y: auto; overflow-x: hidden;
+  padding: var(--safe-top) 0 calc(var(--safe-bottom) + 90px);
+  scrollbar-width: none;
+}
+.screen::-webkit-scrollbar { display: none; }
+.screen.no-tabbar { padding-bottom: calc(var(--safe-bottom) + 16px); }
+
+.status-bar {
+  position: absolute; top: 0; left: 0; right: 0; height: 54px; z-index: 50;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 6px 32px 0 48px; font: 600 17px/22px var(--font); letter-spacing: -0.4px;
+  color: var(--label); pointer-events: none;
+}
+.status-bar.light-content { color: #fff; }
+.status-bar .sb-icons { display: flex; gap: 6px; align-items: center; }
+.status-bar svg { display: block; fill: currentColor; }
+.island {
+  position: absolute; top: 11px; left: 50%; transform: translateX(-50%);
+  width: 126px; height: 37px; border-radius: 20px; background: #000; z-index: 60;
+}
+.home-indicator {
+  position: absolute; bottom: 8px; left: 50%; transform: translateX(-50%); z-index: 60;
+  width: 140px; height: 5px; border-radius: 3px; background: var(--label);
+}
+
+/* scroll edge effect: soft fade so controls read over content (instead of a solid bar) */
+.edge-top, .edge-bottom { position: absolute; left: 0; right: 0; z-index: 20; pointer-events: none; }
+.edge-top {
+  top: 0; height: 124px;
+  background: linear-gradient(to bottom, var(--edge-color, var(--bg)) 55%, transparent);
+  -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px);
+  -webkit-mask-image: linear-gradient(to bottom, #000 45%, transparent);
+          mask-image: linear-gradient(to bottom, #000 45%, transparent);
+}
+.edge-bottom {
+  bottom: 0; height: 130px;
+  background: linear-gradient(to top, var(--edge-color, var(--bg)) 20%, transparent);
+  -webkit-mask-image: linear-gradient(to top, #000 40%, transparent);
+          mask-image: linear-gradient(to top, #000 40%, transparent);
+}
+.iphone.grouped .edge-top, .iphone.grouped .edge-bottom { --edge-color: var(--bg-grouped); }
+
+/* ---------- Liquid Glass ---------- */
+.glass {
+  background: var(--glass-bg);
+  -webkit-backdrop-filter: blur(16px) saturate(180%); backdrop-filter: blur(16px) saturate(180%);
+  border: 0.5px solid var(--glass-border);
+  box-shadow: var(--glass-highlight), var(--glass-shadow);
+}
+
+/* ---------- top bar (navigation bar / toolbar) ---------- */
+.nav {
+  position: absolute; top: var(--safe-top); left: 0; right: 0; z-index: 30;
+  height: 44px; padding: 0 var(--margin);
+  display: flex; align-items: center; justify-content: space-between; gap: 8px;
+}
+.nav-title {                     /* inline title (centered) */
+  position: absolute; left: 50%; transform: translateX(-50%); max-width: 200px;
+  font: 600 17px/22px var(--font); letter-spacing: -0.43px;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.nav-title.two-line { display: flex; flex-direction: column; align-items: center; line-height: 20px; max-width: 230px; }
+.nav-title .nav-sub { font: 400 12px/15px var(--font); letter-spacing: 0; color: var(--label-2); max-width: 230px; overflow: hidden; text-overflow: ellipsis; }
+.nav-group { display: flex; gap: 0; border-radius: 22px; }  /* several actions share one glass capsule */
+.nav-group .glass-btn { background: none; border: 0; box-shadow: none; -webkit-backdrop-filter: none; backdrop-filter: none; }
+
+.glass-btn {                     /* circular bar button: 44x44 hit target */
+  width: 44px; height: 44px; border-radius: 22px; display: inline-grid; place-items: center;
+  color: var(--label); font: 500 17px var(--font); flex: none;
+}
+.glass-btn.text { width: auto; padding: 0 16px; }
+.glass-btn.prominent {           /* Done / Submit: tinted, one per bar, trailing side */
+  background: var(--accent); color: var(--on-accent); border-color: transparent;
+}
+.glass-btn svg, .glass-btn i { width: 22px; height: 22px; }
+
+.large-title {
+  padding: 52px var(--margin) 8px;            /* sits under the 44pt bar */
+  font: 700 34px/41px var(--font); letter-spacing: 0.4px; margin: 0;
+}
+.large-title + .subtitle { padding: 0 var(--margin); margin: -4px 0 8px; color: var(--label-2); font: 400 15px/20px var(--font); letter-spacing: -0.23px; }
+
+/* ---------- tab bar (floating Liquid Glass) ---------- */
+.tab-bar-wrap {
+  position: absolute; left: 21px; right: 21px; bottom: 21px; z-index: 40;
+  display: flex; gap: 12px; align-items: center;
+}
+.tab-bar {
+  flex: 1; height: 62px; border-radius: 31px; padding: 4px;
+  display: flex; align-items: stretch;
+}
+.tab {
+  flex: 1; border-radius: 27px; display: flex; flex-direction: column; align-items: center; justify-content: center;
+  gap: 1px; color: var(--label); font: 600 10px/12px var(--font); letter-spacing: 0.1px;
+}
+.tab svg, .tab i { width: 26px; height: 26px; }
+.tab.active { background: var(--glass-selected); color: var(--accent); }
+.tab-bar.filled-active .tab.active { background: var(--accent); color: var(--on-accent); }  /* bold style; use with light accents like lime */
+.tab .tab-badge {
+  position: absolute; margin: -22px 0 0 22px; min-width: 18px; height: 18px; padding: 0 5px;
+  border-radius: 9px; background: var(--red); color: #fff; font: 600 12px/18px var(--font); text-align: center;
+}
+.tab { position: relative; }
+.tab-search {                    /* dedicated search tab at the trailing end */
+  width: 62px; height: 62px; border-radius: 31px; display: grid; place-items: center; color: var(--label); flex: none;
+}
+.tab-search svg, .tab-search i { width: 24px; height: 24px; }
+
+/* bottom toolbar (instead of a tab bar, e.g. in a pushed detail view) */
+.toolbar-bottom {
+  position: absolute; left: var(--margin); right: var(--margin); bottom: 26px; z-index: 40;
+  display: flex; justify-content: space-between; align-items: center;
+}
+
+/* bottom-pinned primary action (cart, forms, onboarding) — pair with .screen.has-bottom-bar */
+.bottom-bar {
+  position: absolute; left: 0; right: 0; bottom: 0; z-index: 40;
+  padding: 28px var(--margin) calc(var(--safe-bottom) + 8px);
+  background: linear-gradient(to top, var(--edge-color, var(--bg)) 70%, transparent);
+  display: flex; flex-direction: column; gap: 8px;
+}
+.iphone.grouped .bottom-bar, .sheet .bottom-bar { --edge-color: var(--bg-grouped); }
+:root[data-theme="dark"] .sheet .bottom-bar { --edge-color: var(--bg-2); }
+.screen.has-bottom-bar { padding-bottom: calc(var(--safe-bottom) + 120px); }   /* last row stays visible */
+
+/* hero media that runs under the status bar and glass nav buttons */
+.hero { position: relative; margin-top: calc(-1 * var(--safe-top)); height: 300px; overflow: hidden; }
+.hero > img, .hero > .ph { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+/* ---------- typography (Dynamic Type "Large" default) ---------- */
+.t-large-title { font: 700 34px/41px var(--font); letter-spacing: 0.4px; }
+.t-title1   { font: 700 28px/34px var(--font); letter-spacing: 0.38px; }
+.t-title2   { font: 700 22px/28px var(--font); letter-spacing: -0.26px; }
+.t-title3   { font: 600 20px/25px var(--font); letter-spacing: -0.45px; }
+.t-headline { font: 600 17px/22px var(--font); letter-spacing: -0.43px; }
+.t-body     { font: 400 17px/22px var(--font); letter-spacing: -0.43px; }
+.t-callout  { font: 400 16px/21px var(--font); letter-spacing: -0.31px; }
+.t-subhead  { font: 400 15px/20px var(--font); letter-spacing: -0.23px; }
+.t-footnote { font: 400 13px/18px var(--font); letter-spacing: -0.08px; }
+.t-caption1 { font: 400 12px/16px var(--font); letter-spacing: 0; }
+.t-caption2 { font: 400 11px/13px var(--font); letter-spacing: 0.06px; }
+.bold { font-weight: 600; } .heavy { font-weight: 700; } .rounded { font-family: var(--font-rounded); }
+.serif { font-family: var(--font-serif); } .mono { font-family: var(--font-mono); } .tnum { font-variant-numeric: tabular-nums; }
+.c-2 { color: var(--label-2); } .c-3 { color: var(--label-3); } .c-accent { color: var(--accent); }
+.c-red { color: var(--red); } .c-green { color: var(--green); }
+
+/* ---------- layout helpers ---------- */
+.pad { padding-left: var(--margin); padding-right: var(--margin); }
+.stack { display: flex; flex-direction: column; } .hstack { display: flex; align-items: center; }
+.gap1 { gap: 4px; } .gap2 { gap: 8px; } .gap3 { gap: 12px; } .gap4 { gap: 16px; } .gap6 { gap: 24px; }
+.grow { flex: 1; min-width: 0; } .between { justify-content: space-between; }
+.mt2 { margin-top: 8px; } .mt4 { margin-top: 16px; } .mt6 { margin-top: 24px; } .mt8 { margin-top: 32px; }
+.hscroll { display: flex; gap: 12px; overflow-x: auto; padding: 0 var(--margin); scrollbar-width: none; }
+.hscroll::-webkit-scrollbar { display: none; }
+.truncate { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+/* section header above content blocks (not lists) */
+.section-title { display: flex; justify-content: space-between; align-items: baseline; padding: 0 var(--margin); margin: 28px 0 10px; }
+.section-title h2 { margin: 0; font: 700 22px/28px var(--font); letter-spacing: -0.26px; }
+.section-title a { color: var(--accent); font: 400 17px var(--font); text-decoration: none; }
+
+/* ---------- inset grouped list ---------- */
+.list { margin: 0 var(--margin) 0; }
+.list-header { padding: 0 calc(var(--margin) + 16px) 7px; margin-top: 22px; font: 600 15px/20px var(--font); letter-spacing: -0.23px; color: var(--label-2); }
+.list-footer { padding: 7px calc(var(--margin) + 16px) 0; font: 400 13px/18px var(--font); letter-spacing: -0.08px; color: var(--label-2); }
+.list-body { background: var(--bg-grouped-2); border-radius: var(--r-group); overflow: hidden; }
+.iphone:not(.grouped) .list-body { background: var(--bg-2); }
+.row {
+  position: relative; min-height: 52px; padding: 11px 16px; display: flex; align-items: center; gap: 12px;
+  color: var(--label); text-decoration: none;
+}
+.row + .row::before {            /* separator inset to the text, never full-bleed */
+  content: ""; position: absolute; top: 0; right: 0; left: var(--sep-inset, 16px); height: 0.5px; background: var(--separator);
+}
+.list-body.with-icons .row + .row::before { --sep-inset: 58px; }
+.row .row-text { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 1px; }
+.row .row-sub { font: 400 15px/20px var(--font); letter-spacing: -0.23px; color: var(--label-2); }
+.row .row-detail { color: var(--label-2); white-space: nowrap; }
+.row .chevron { width: 9px; height: 15px; flex: none; color: var(--label-3); }
+.row.destructive { color: var(--red); justify-content: center; }
+.row.action { color: var(--accent); }
+.icon-tile {                     /* Settings-style colored icon square */
+  width: 30px; height: 30px; border-radius: 8px; display: grid; place-items: center; flex: none;
+  background: var(--tile, var(--gray)); color: #fff;
+}
+.icon-tile svg, .icon-tile i { width: 19px; height: 19px; }
+
+/* plain (edge-to-edge) list rows */
+.plain-list .row { padding-left: var(--margin); padding-right: var(--margin); }
+.plain-list .row + .row::before { left: var(--sep-inset, var(--margin)); }
+
+/* ---------- buttons ---------- */
+.btn {
+  height: 50px; padding: 0 22px; border-radius: 25px; border: 0; display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+  font: 600 17px/22px var(--font); letter-spacing: -0.43px; cursor: pointer; text-decoration: none; white-space: nowrap;
+}
+.btn.block { display: flex; width: 100%; }
+.btn-prominent { background: var(--accent); color: var(--on-accent); }               /* one per screen */
+.btn-tinted { background: color-mix(in srgb, var(--accent) 15%, transparent); color: var(--accent); }
+.btn-gray { background: var(--fill-3); color: var(--label); }
+.btn-plain { background: none; color: var(--accent); font-weight: 400; padding: 0 8px; }
+.btn-destructive { background: color-mix(in srgb, var(--red) 14%, transparent); color: var(--red); }
+.btn.small { height: 34px; padding: 0 14px; border-radius: 17px; font: 600 15px/20px var(--font); letter-spacing: -0.23px; }
+.btn.medium { height: 44px; padding: 0 18px; border-radius: 22px; }
+.btn:active { filter: brightness(0.92); }
+
+/* ---------- controls ---------- */
+.toggle { width: 64px; height: 28px; border-radius: 14px; background: var(--fill); position: relative; flex: none; }
+.toggle::after { content: ""; position: absolute; top: 2px; left: 2px; width: 38px; height: 24px; border-radius: 12px; background: #fff; box-shadow: 0 2px 6px rgba(0,0,0,.15), 0 0 0 .5px rgba(0,0,0,.04); }
+.toggle.on { background: var(--green); }
+.toggle.on::after { left: 24px; }
+
+.segmented { display: flex; height: 36px; padding: 2px; border-radius: 18px; background: var(--fill-3); }
+.segmented > * { flex: 1; display: grid; place-items: center; border-radius: 16px; font: 500 14px var(--font); color: var(--label); }
+.segmented > .on { background: var(--bg); box-shadow: 0 2px 8px rgba(0,0,0,.10); font-weight: 600; }
+:root[data-theme="dark"] .segmented > .on { background: #636366; }
+
+.search-field {
+  height: 44px; border-radius: 22px; display: flex; align-items: center; gap: 6px; padding: 0 14px;
+  background: var(--fill-3); color: var(--placeholder); font: 400 17px var(--font); letter-spacing: -0.43px;
+}
+.search-field svg, .search-field i { width: 18px; height: 18px; color: var(--label-2); }
+.search-field .mic { margin-left: auto; }
+
+.text-field { height: 52px; border-radius: 14px; padding: 0 16px; display: flex; align-items: center; background: var(--fill-3); color: var(--label); }
+.text-field.placeholder { color: var(--placeholder); }
+
+.chip { height: 34px; padding: 0 14px; border-radius: 17px; display: inline-flex; align-items: center; gap: 6px; background: var(--fill-3); font: 500 15px var(--font); white-space: nowrap; color: var(--label); }
+.chip.on { background: var(--label); color: var(--bg); }
+
+.badge { min-width: 20px; height: 20px; padding: 0 6px; border-radius: 10px; background: var(--red); color: #fff; font: 600 13px/20px var(--font); text-align: center; }
+
+.progress { height: 4px; border-radius: 2px; background: var(--fill-3); overflow: hidden; }
+.progress > span { display: block; height: 100%; border-radius: 2px; background: var(--accent); }
+
+.slider { position: relative; height: 28px; display: flex; align-items: center; }
+.slider .track { flex: 1; height: 6px; border-radius: 3px; background: var(--fill); }
+.slider .track > span { display: block; height: 100%; border-radius: 3px; background: var(--accent); }
+.slider .knob { position: absolute; top: 0; width: 38px; height: 24px; margin: 2px 0 0 -19px; border-radius: 12px; background: #fff; box-shadow: 0 2px 6px rgba(0,0,0,.18); }
+
+.stepper { display: inline-flex; align-items: center; height: 36px; border-radius: 18px; background: var(--fill-3); flex: none; }
+.stepper > span { min-width: 44px; height: 36px; display: grid; place-items: center; color: var(--label); }
+.stepper > span svg, .stepper > span i { width: 18px; height: 18px; }
+.stepper > .val { min-width: 24px; font: 600 17px var(--font); font-variant-numeric: tabular-nums; }
+
+.page-dots { display: flex; gap: 8px; justify-content: center; }
+.page-dots > span { width: 7px; height: 7px; border-radius: 4px; background: var(--label-4); }
+.page-dots > span.on { background: var(--label); }
+
+/* ---------- content surfaces ---------- */
+.card { background: var(--bg-2); border-radius: var(--r-xl); overflow: hidden; }
+.iphone.grouped .card { background: var(--bg-grouped-2); }
+.card-pad { padding: 16px; }
+.media { width: 100%; aspect-ratio: var(--ar, 4/3); object-fit: cover; display: block; background: var(--fill-3); }
+.avatar { width: 40px; height: 40px; border-radius: 50%; object-fit: cover; flex: none; background: var(--fill-3); display: grid; place-items: center; font: 600 16px var(--font); color: var(--label-2); }
+.avatar.lg { width: 88px; height: 88px; font-size: 32px; }
+.avatar-stack { display: flex; }
+.avatar-stack > .avatar { box-shadow: 0 0 0 2px var(--bg); }          /* ring separates overlaps */
+.avatar-stack > .avatar + .avatar { margin-left: -10px; }
+.avatar.sm { width: 32px; height: 32px; font-size: 13px; }
+.thumb { width: 60px; height: 60px; border-radius: 12px; object-fit: cover; flex: none; background: var(--fill-3); }
+.divider { height: 0.5px; background: var(--separator); margin: 0 var(--margin); }
+
+/* placeholder art when no photo is available: soft, varied gradients — never gray boxes */
+.ph { background: linear-gradient(135deg, var(--ph1, #A1C4FD), var(--ph2, #C2E9FB)); }
+
+/* ---------- bold-dashboard pieces (owner's taste: see taste.md) ---------- */
+/* hero number: <div class="num-hero">3,200<span class="dec">.00</span></div>  or  190<span class="unit">lbs</span> */
+.num-hero { font: 700 56px/1 var(--font); letter-spacing: -1.5px; font-variant-numeric: tabular-nums; }
+.num-hero.xl { font-size: 72px; letter-spacing: -2.5px; }
+.num-hero.md { font-size: 40px; letter-spacing: -1px; }
+.num-hero .dec, .num-hero .unit { font-size: 0.45em; font-weight: 600; letter-spacing: -0.2px; color: var(--label-2); margin-left: 2px; }
+.num-hero.rounded { font-family: var(--font-rounded); }
+
+/* bento stat tiles: <div class="bento"><div class="tile">…</div><div class="tile accent">…</div></div> */
+.bento { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; padding: 0 var(--margin); }
+.bento .span2 { grid-column: span 2; }
+.tile { background: var(--bg-2); border-radius: var(--r-xl); padding: 16px; display: flex; flex-direction: column; gap: 6px; min-height: 112px; position: relative; overflow: hidden; }
+.iphone.grouped .tile { background: var(--bg-grouped-2); }
+.tile .tile-label { font: 500 15px/20px var(--font); letter-spacing: -0.23px; color: var(--label-2); display: flex; align-items: center; gap: 6px; }
+.tile .tile-icon { width: 36px; height: 36px; border-radius: 18px; display: grid; place-items: center; background: var(--fill-3); }
+.tile .tile-icon svg, .tile .tile-icon i { width: 18px; height: 18px; }
+.tile.accent { background: var(--accent); color: var(--on-accent); }
+.tile.accent .tile-label, .tile.accent .num-hero .dec, .tile.accent .num-hero .unit { color: color-mix(in srgb, var(--on-accent) 70%, transparent); }
+.tile.accent .tile-icon { background: color-mix(in srgb, var(--on-accent) 14%, transparent); }
+.delta { display: inline-flex; align-items: center; gap: 2px; height: 22px; padding: 0 8px; border-radius: 11px; font: 600 13px var(--font); }
+.delta.up { background: color-mix(in srgb, var(--green) 18%, transparent); color: var(--green); }
+.delta.down { background: color-mix(in srgb, var(--red) 18%, transparent); color: var(--red); }
+
+/* streak heatmap: columns of 7 cells; add class l1..l4 for intensity */
+.heatmap { display: grid; grid-auto-flow: column; grid-template-rows: repeat(7, 1fr); gap: 4px; justify-content: start; }
+.heatmap > i { width: 12px; height: 12px; border-radius: 3px; background: var(--fill-3); display: block; }
+.heatmap.lg > i { width: 16px; height: 16px; border-radius: 4px; }
+.heatmap > i.l1 { background: color-mix(in srgb, var(--accent) 30%, transparent); }
+.heatmap > i.l2 { background: color-mix(in srgb, var(--accent) 55%, transparent); }
+.heatmap > i.l3 { background: color-mix(in srgb, var(--accent) 80%, transparent); }
+.heatmap > i.l4 { background: var(--accent); }
+.heatmap > i.today { outline: 1.5px solid var(--label); outline-offset: 1px; }
+
+/* accent pill segmented control (Day / Week / Month) */
+.segmented.accent > .on { background: var(--accent); color: var(--on-accent); box-shadow: none; }
+:root[data-theme="dark"] .segmented.accent > .on { background: var(--accent); }
+
+/* ambient glow behind the hero: put <div class="glow"></div> as the first child of .iphone */
+.glow { position: absolute; z-index: 0; left: -20%; right: -20%; top: -180px; height: 520px; pointer-events: none;
+  background: radial-gradient(closest-side, color-mix(in srgb, var(--glow, var(--accent)) 55%, transparent), transparent); opacity: .55; filter: blur(30px); }
+.iphone > .screen { z-index: 1; }
+:root:not([data-theme="dark"]) .glow { opacity: .35; }
+
+/* tooltip bubble for highlighted chart points */
+.bubble { display: inline-block; padding: 3px 8px; border-radius: 9px; background: var(--label); color: var(--bg); font: 600 12px/16px var(--font); font-variant-numeric: tabular-nums; }
+
+/* rounded bar chart: <div class="bars"><span style="--h:60%"></span>…</div> */
+.bars { display: flex; align-items: flex-end; gap: 8px; height: 140px; }
+.bars > span { flex: 1; height: var(--h, 50%); border-radius: 8px; background: var(--fill); }
+.bars > span.on { background: var(--accent); }
+.bar-labels { display: flex; gap: 8px; margin-top: 6px; }
+.bar-labels > span { flex: 1; text-align: center; font: 500 12px var(--font); color: var(--label-2); }
+
+/* ---------- empty state ---------- */
+.empty { display: flex; flex-direction: column; align-items: center; text-align: center; gap: 8px; padding: 0 40px; }
+.empty svg, .empty i { width: 54px; height: 54px; color: var(--label-3); margin-bottom: 8px; }
+.empty h3 { margin: 0; font: 700 22px/28px var(--font); letter-spacing: -0.26px; }
+.empty p { margin: 0; color: var(--label-2); font: 400 15px/20px var(--font); }
+
+/* ---------- sheet + dimming ---------- */
+.dim { position: absolute; inset: 0; z-index: 70; background: rgba(0, 0, 0, 0.25); }
+.sheet {
+  position: absolute; left: 8px; right: 8px; bottom: 8px; z-index: 80;    /* medium detent floats inset */
+  border-radius: var(--r-sheet); padding: 8px 0 24px; background: var(--bg-grouped);
+  box-shadow: 0 -2px 30px rgba(0, 0, 0, 0.18);
+}
+.sheet.large { left: 0; right: 0; bottom: 0; top: 56px; border-radius: var(--r-sheet) var(--r-sheet) 0 0; }
+:root[data-theme="dark"] .sheet { background: var(--bg-2); }          /* lifts the sheet off black */
+.sheet .screen { position: absolute; inset: 0; padding: 60px 0 140px; }  /* scrolling sheet body */
+.sheet.glass-sheet { background: var(--glass-bg); -webkit-backdrop-filter: blur(30px) saturate(180%); backdrop-filter: blur(30px) saturate(180%); }
+.grabber { width: 36px; height: 5px; border-radius: 3px; background: var(--label-3); margin: 0 auto 8px; }
+.sheet .nav { position: relative; top: 0; padding: 0 16px; }
+
+/* ---------- alert ---------- */
+.alert {
+  position: absolute; z-index: 90; left: 50%; top: 50%; transform: translate(-50%, -50%);
+  width: 300px; border-radius: 34px; padding: 22px 20px 16px; text-align: left;
+}
+.alert h3 { margin: 0 0 6px; font: 600 17px/22px var(--font); letter-spacing: -0.43px; }
+.alert p { margin: 0 0 16px; font: 400 15px/20px var(--font); letter-spacing: -0.23px; color: var(--label); }
+.alert .alert-actions { display: flex; gap: 10px; }
+.alert .alert-actions .btn { flex: 1; height: 48px; }
+
+/* ---------- context menu ---------- */
+.menu { position: absolute; z-index: 90; width: 250px; border-radius: 26px; padding: 6px 0; }
+.menu .mi { display: flex; justify-content: space-between; align-items: center; padding: 11px 20px; font: 400 17px var(--font); }
+.menu .mi.destructive { color: var(--red); }
+.menu .msep { height: 8px; background: var(--fill-4); margin: 4px 0; }
+
+/* icons: lucide <i data-lucide="name"> or inline <svg>; keep stroke ~1.75 for an SF Symbols feel */
+[data-lucide], .lucide { stroke-width: 1.9; }
+.tab .lucide, .glass-btn .lucide { stroke-width: 2; }
+.filled .lucide, .lucide.filled { fill: currentColor; }

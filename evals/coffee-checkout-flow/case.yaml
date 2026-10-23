@@ -1,0 +1,4 @@
+schema_version: "1.1"
+name: coffee-checkout-flow
+expected_outcome: |
+  Two iPhone screens side by side: a cart with realistic coffee items, quantities and prices, totals, and a single checkout action; and a payment step (ideally a sheet) offering Apple Pay or a card with a clear total.

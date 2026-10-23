@@ -1,0 +1,22 @@
+# Sidebars
+_A sidebar appears on the leading side of a view and lets people navigate between areas of your app or top-level collections of content, like folders and playlists._
+Source: https://developer.apple.com/design/human-interface-guidelines/sidebars
+
+### Best practices
+- **Extend visually rich content beneath the sidebar.** In iOS, iPadOS, and macOS, as with other controls such as toolbars and tab bars, sidebars can float above content in the Liquid Glass layer. To reinforce the separation, you can extend content beneath the sidebar either by letting it horizontally scroll or by applying a background extension effect. A background extension effect mirrors adjacent content to give the impression of stretching it under the sidebar. For developer guidance, see backgroundExtensionEffect().
+- **When possible, let people customize the contents of a sidebar.** A sidebar lets people navigate to important areas in your app, so it works well when people can decide which areas are most important and in what order they appear.
+- **Group hierarchy with disclosure controls if your app has a lot of content.** Using disclosure controls helps keep the sidebar’s vertical space to a manageable level.
+- **Consider using familiar symbols to represent items in the sidebar.** SF Symbols provides a wide range of customizable symbols you can use to represent items in your app. If you need to use a custom icon, consider creating a custom symbol rather than using a bitmap image. Download the SF Symbols app from Apple Design Resources.
+- **Consider letting people hide the sidebar.** People sometimes want to hide the sidebar to create more room for content details or to reduce distraction. When possible, let people hide and show the sidebar using the platform-specific interactions they already know. For example, in iPadOS, people expect to use the built-in edge swipe gesture; in macOS, you can include a show/hide button or add Show Sidebar and Hide Sidebar commands to your app’s View menu. In visionOS, a window typically expands to accommodate a sidebar, so people rarely need to hide it. Avoid hiding the sidebar by default to ensure that it remains discoverable.
+- **In general, show no more than two levels of hierarchy in a sidebar.** When a data hierarchy is deeper than two levels, consider using a split view interface that includes a content list between the sidebar items and detail view.
+- **If you need to include two levels of hierarchy in a sidebar, use succinct, descriptive labels to title each group.** To help keep labels short, omit unnecessary words.
+- **Make sure any sidebar icon colors you choose serve a clear purpose.** By default, sidebar icons use your app’s accent color. In macOS, people can change the system accent color, which applies to all apps. When they do this, they expect all sidebar icons to appear in that color, so make sure your sidebar icons display the color people choose. However, if you use them sparingly, fixed colors can help clarify the meaning of an icon or draw attention to it. For example, the VIP icon in Mail uses a yellow color to set it apart from other sidebar icons, providing a visual cue about its importance.
+
+### Platform considerations
+No additional considerations for tvOS. Not supported in watchOS.
+
+#### iOS, iPadOS
+When you use the sidebarAdaptable style of tab view to present a sidebar, you choose whether to display a sidebar or a tab bar when your app opens. Both variations include a button that people can use to switch between them. This style also adapts its appearance depending on the platform, and responds automatically to rotation and window resizing, providing a version of the control that’s appropriate to the width of the view.
+> Developer note: To display a sidebar only, use NavigationSplitView to present a sidebar in the primary pane of a split view, or use UISplitViewController.
+- **Consider using a tab bar first.** A tab bar provides more space to feature content, and offers enough flexibility to navigate between many apps’ main areas. If you need to expose more areas than fit in a tab bar, the tab bar’s convertible sidebar-style appearance can provide access to content that people use less frequently. For guidance, see Tab bars.
+- **If necessary, apply the correct appearance to a sidebar.** If you’re not using SwiftUI to create a sidebar, you can use the UICollectionLayoutListConfiguration.Appearance.sidebar appearance of a collection view list layout. For developer guidance, see UICollectionLayoutListConfiguration.Appearance.

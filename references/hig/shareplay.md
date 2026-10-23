@@ -1,0 +1,20 @@
+# SharePlay
+_SharePlay lets people experience activities together from anywhere, whether they’re watching a movie, playing a game, or sketching on a whiteboard._
+Source: https://developer.apple.com/design/human-interface-guidelines/shareplay
+> Note: If your activity involves content people buy or subscribe to, each participant needs their own copy or subscription. The system prompts anyone without access to download or subscribe.
+
+### Best practices
+- **Use SharePlay for real-time experiences.** SharePlay is designed for activities people do together at the same moment. To also support asynchronous collaboration, where people contribute on their own schedule, give them a way to share or save the activity after the session ends. For example, people can use SharePlay to view and edit a Freeform board together in real time, then share a link afterward to keep collaborating. For developer guidance, see Adding shared content collaboration to your app.
+- **Design an experience that best fits what people are doing together.** For many activities, like watching or browsing, it makes sense for everyone to share one view and see the same thing. Other activities feel richer when the view adapts to each person’s role, like a game that gives every player their own perspective.
+- **Design activities that work across Apple platforms.** People may want to share with others on different devices, in different settings, and through different communication methods. Build adaptable experiences that work well across these differences so everyone can participate.
+- **Make it easy to start a shared activity.** Give people a clear, recognizable way to begin an activity in your app, like a button that includes the SharePlay symbol. People can also start from system-provided features like the share sheet. In visionOS, people can start an activity using the Share button next to the window bar. For developer guidance, see Presenting SharePlay activities from your app’s UI.
+- **Let people join an activity without friction.** When someone joins, get them to the shared content quickly and avoid showing views unrelated to the activity. If they need to sign in, download content, or subscribe first, guide them through it in a view that dismisses as soon as they’re done. For purchases or subscriptions, lower the barrier by offering provisional access to nonsubscribers or supporting Family Sharing. Defer nonessential steps to more natural moments. For example, a game might let people join a match right away and set up profiles once they’re connected.
+- **Describe activities clearly and concisely.** When someone receives an invitation, a clear description helps them understand what they’re about to join. For a movie, that might be the title, a short summary, and a poster image. Keep descriptions brief enough to avoid truncation.
+- **Keep people oriented as an activity changes.** When one person’s action changes the activity for everyone, help people understand why. For media, the system can coordinate playback across devices, so pausing a movie for one person pauses it for everyone. For other changes, use in-app cues to show who’s doing what. In Freeform, for example, a participant’s initials appear next to their contribution, strengthening the sense of presence.
+- **Use the term SharePlay correctly.** You can use SharePlay as a noun, as in “Join SharePlay,” or as a verb that describes an action in your interface, like a SharePlay Movie button. Don’t pair SharePlay with an adjective. In a visionOS app, for instance, avoid adding terms like virtual or spatial. And don’t alter the term itself with variations like SharePlayed, SharePlays, or SharePlaying.
+
+### Platform considerations
+No additional considerations for tvOS. Not supported in watchOS.
+
+#### iOS, iPadOS, macOS
+- **Support Picture in Picture for shared video.** Let people keep watching together even while they do other things on their device. On iPhone and iPad, a shared video can continue playing in a Picture in Picture window. On Mac, it can keep playing in a window people bring forward when they want to watch.

@@ -1,0 +1,4 @@
+schema_version: "1.1"
+name: trip-detail-screen
+expected_outcome: |
+  A pushed iPhone detail screen for a Lisbon trip: back chevron, hero or summary header, flight and hotel info, a day-by-day itinerary, realistic Lisbon places and times, light and dark mode.
