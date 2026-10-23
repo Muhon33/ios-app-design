@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Features</title>
+<link rel="stylesheet" href="readme.css">
+<script>
+  var dark = new URLSearchParams(location.search).get("theme") === "dark";
+  if (dark) document.documentElement.dataset.theme = "dark";
+</script>
+<style>
+  body { width: 960px; height: 760px; padding: 20px; }
+  .grid { display: grid; grid-template-columns: repeat(3, 1fr); grid-template-rows: 300px 260px 140px; gap: 16px; height: 100%; }
+  .tile { background: var(--tile); border-radius: 28px; padding: 26px 28px; position: relative; overflow: hidden; display: flex; flex-direction: column; }
+  .span2 { grid-column: span 2; } .span3 { grid-column: span 3; }
+  .tile h3 { margin: 0; font: 700 24px/29px var(--font); letter-spacing: -0.6px; max-width: 330px; }
+  .tile h3 span { color: var(--ink-2); font-weight: 600; }
+  .tile p { margin: 8px 0 0; font: 400 15px/21px var(--font); color: var(--ink-2); letter-spacing: -0.2px; max-width: 320px; }
+
+  /* 1 · Liquid Glass */
+  .lg-art { position: absolute; right: -20px; bottom: -10px; width: 330px; height: 250px; }
+  .lg-art .blob { position: absolute; border-radius: 50%; filter: blur(2px); }
+  .lg-art .bar { position: absolute; left: 18px; right: 40px; bottom: 44px; height: 62px; border-radius: 31px; display: flex; padding: 4px; gap: 4px;
+                 background: var(--glass); border: 1px solid var(--glass-line); backdrop-filter: blur(18px) saturate(180%);
+                 box-shadow: inset 0 1px 0 rgba(255,255,255,.5), 0 10px 30px rgba(0,0,0,.18); }
+  .lg-art .tab { flex: 1; border-radius: 27px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px;
+                 font: 600 10px/1 var(--font); color: var(--ink); }
+  .lg-art .tab.on { background: rgba(255,255,255,.5); color: var(--blue); }
+  :root[data-theme="dark"] .lg-art .tab.on { background: rgba(255,255,255,.14); }
+  .lg-art .tab svg { width: 22px; height: 22px; }
+  .lg-art .fab { position: absolute; right: 40px; top: 46px; width: 54px; height: 54px; border-radius: 27px; display: grid; place-items: center;
+                 background: var(--glass); border: 1px solid var(--glass-line); backdrop-filter: blur(18px) saturate(180%); color: var(--ink);
+                 box-shadow: inset 0 1px 0 rgba(255,255,255,.5), 0 10px 30px rgba(0,0,0,.18); }
+
+  /* 2 · HIG number */
+  .big { font: 800 112px/1 var(--font); letter-spacing: -5px; margin-top: auto; }
+
+  /* 3 · Type scale */
+  .scale { margin-top: auto; display: flex; flex-direction: column; gap: 2px; }
+  .scale div { display: flex; align-items: baseline; justify-content: space-between; border-top: 1px solid var(--line); padding-top: 4px; }
+  .scale b { font-weight: 700; letter-spacing: -0.5px; }
+  .scale small { font: 500 12px/1 var(--font); color: var(--ink-3); font-variant-numeric: tabular-nums; }
+
+  /* 4 · Dark mode */
+  .modes { margin-top: auto; display: flex; gap: 12px; }
+  .mode { flex: 1; height: 112px; border-radius: 20px; padding: 14px; display: flex; flex-direction: column; justify-content: space-between; }
+  .mode.l { background: #FFFFFF; color: #1D1D1F; box-shadow: 0 0 0 1px rgba(0,0,0,.06); }
+  .mode.d { background: #000000; color: #F5F5F7; box-shadow: 0 0 0 1px rgba(255,255,255,.12); }
+  .mode .aa { font: 700 30px/1 var(--font); letter-spacing: -1px; }
+  .mode .pill { height: 22px; width: 64px; border-radius: 11px; background: var(--blue); }
+  .mode .lines i { display: block; height: 6px; border-radius: 3px; background: currentColor; opacity: .18; margin-top: 5px; }
+
+  /* 5 · Render loop */
+  .loop { margin-top: auto; display: flex; flex-direction: column; gap: 8px; }
+  .step { display: flex; align-items: center; gap: 12px; height: 44px; padding: 0 14px; border-radius: 22px; background: var(--page);
+          font: 600 15px/1 var(--font); letter-spacing: -0.2px; }
+  .step i { width: 22px; height: 22px; border-radius: 11px; display: grid; place-items: center; font: 700 12px/1 var(--font); font-style: normal;
+            background: var(--ink); color: var(--page); }
+  .step.ok i { background: #34C759; color: #fff; }
+  .step span { margin-left: auto; color: var(--ink-3); font-weight: 500; font-size: 13px; }
+
+  /* 6 · Taste */
+  .taste { flex-direction: row; align-items: center; justify-content: space-between; }
+  .swatches { display: flex; gap: 12px; }
+  .swatches i { width: 44px; height: 44px; border-radius: 22px; display: block; }
+  .swatches i.on { box-shadow: 0 0 0 3px var(--tile), 0 0 0 5px var(--ink); }
+  .file { font: 500 14px/1 ui-monospace, "SF Mono", Menlo, Consolas, monospace; color: var(--ink-2); background: var(--page);
+          padding: 6px 10px; border-radius: 8px; margin-left: 4px; }
+</style>
+</head>
+<body>
+<div class="grid">
+
+  <div class="tile span2">
+    <h3>Liquid Glass, <span>done right.</span></h3>
+    <p>Bars and buttons float on glass. Content stays clear, edge to edge.</p>
+    <div class="lg-art">
+      <div class="blob" style="left:20px;top:30px;width:160px;height:160px;background:#FF7A1A"></div>
+      <div class="blob" style="left:130px;top:70px;width:170px;height:170px;background:#6D5DFC"></div>
+      <div class="blob" style="left:90px;top:0;width:110px;height:110px;background:#D4FF3A"></div>
+      <div class="fab"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></div>
+      <div class="bar">
+        <div class="tab on"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 3 3 10v10a1 1 0 0 0 1 1h5v-6h6v6h5a1 1 0 0 0 1-1V10z"/></svg>Home</div>
+        <div class="tab"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="m15.5 8.5-2 5-5 2 2-5z"/></svg>Explore</div>
+        <div class="tab"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M6 3h12v18l-6-4-6 4z"/></svg>Saved</div>
+        <div class="tab"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg>Profile</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="tile">
+    <h3>Apple's guidelines, <span>built in.</span></h3>
+    <p>One short rules file per HIG page, read only when needed.</p>
+    <div class="big gradient-text">127</div>
+  </div>
+
+  <div class="tile">
+    <h3>Exact type. <span>Every size.</span></h3>
+    <div class="scale">
+      <div><b style="font-size:34px;line-height:41px">Large Title</b><small>34</small></div>
+      <div><b style="font-size:22px;line-height:28px">Title 2</b><small>22</small></div>
+      <div><b style="font-size:17px;line-height:22px;font-weight:600">Headline</b><small>17</small></div>
+      <div><b style="font-size:13px;line-height:18px;font-weight:400;color:var(--ink-2)">Footnote</b><small>13</small></div>
+    </div>
+  </div>
+
+  <div class="tile">
+    <h3>Light and dark. <span>Always both.</span></h3>
+    <div class="modes">
+      <div class="mode l"><span class="aa">Aa</span><div class="lines"><i style="width:80%"></i><i style="width:55%"></i></div><span class="pill"></span></div>
+      <div class="mode d"><span class="aa">Aa</span><div class="lines"><i style="width:80%"></i><i style="width:55%"></i></div><span class="pill" style="background:#0091FF"></span></div>
+    </div>
+  </div>
+
+  <div class="tile">
+    <h3>It checks <span>its own work.</span></h3>
+    <div class="loop">
+      <div class="step"><i>1</i>Render<span>screenshot.py</span></div>
+      <div class="step"><i>2</i>Review<span>10-point check</span></div>
+      <div class="step ok"><i>✓</i>Revise<span>then deliver</span></div>
+    </div>
+  </div>
+
+  <div class="tile span3 taste">
+    <div>
+      <h3>Made to your taste.</h3>
+      <p style="max-width:none">Your accent, density and style live in <span class="file">taste.md</span> &nbsp;·&nbsp; favorite screens in <span class="file">examples/</span></p>
+    </div>
+    <div class="swatches"><i class="on" style="background:#D4FF3A"></i><i style="background:#FF7A1A"></i><i style="background:#6D5DFC"></i><i style="background:#2F80FF"></i><i style="background:#FF5A7A"></i></div>
+  </div>
+
+</div>
+</body>
+</html>

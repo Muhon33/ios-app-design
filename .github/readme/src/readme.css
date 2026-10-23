@@ -1,0 +1,30 @@
+/* Shared styles for the README images (hero, gallery, features). Open a page with ?theme=dark for the dark version. */
+@import url("https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400..800&display=swap");
+
+:root {
+  --font: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Inter", system-ui, sans-serif;
+  --page: #FFFFFF; --tile: #F5F5F7; --ink: #1D1D1F; --ink-2: #6E6E73; --ink-3: #A1A1A6;
+  --line: rgba(0,0,0,.08); --bezel: #1C1C1E; --bezel-2: #D2D2D7;
+  --lime: #B8E000; --orange: #FF7A1A; --blue: #2F80FF; --violet: #6D5DFC; --pink: #FF5A7A;
+  --glass: rgba(255,255,255,.55); --glass-line: rgba(255,255,255,.8);
+}
+:root[data-theme="dark"] {
+  --page: #000000; --tile: #161617; --ink: #F5F5F7; --ink-2: #A1A1A6; --ink-3: #6E6E73;
+  --line: rgba(255,255,255,.10); --bezel: #2C2C2E; --bezel-2: #48484A; --lime: #D4FF3A;
+  --glass: rgba(44,44,46,.55); --glass-line: rgba(255,255,255,.14);
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; }
+body { background: var(--page); color: var(--ink); font-family: var(--font); -webkit-font-smoothing: antialiased;
+       overflow: hidden; }
+
+/* phone frame around a rendered screen */
+.device { position: relative; width: var(--w); aspect-ratio: 402 / 874; border-radius: calc(var(--w) * .137);
+          box-shadow: 0 0 0 calc(var(--w) * .027) var(--bezel), 0 0 0 calc(var(--w) * .03) var(--bezel-2),
+                      0 40px 80px rgba(0,0,0,.18); overflow: hidden; background: #000; flex: none; }
+:root[data-theme="dark"] .device { box-shadow: 0 0 0 calc(var(--w) * .027) #0A0A0B, 0 0 0 calc(var(--w) * .03) var(--bezel-2),
+                      0 40px 80px rgba(0,0,0,.6); }
+.device img { display: block; width: 100%; height: 100%; }
+
+.gradient-text { background: linear-gradient(90deg, var(--violet), var(--blue) 30%, #00B3A4 55%, var(--lime) 75%, var(--orange));
+                 -webkit-background-clip: text; background-clip: text; color: transparent; }

@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Gallery</title>
+<link rel="stylesheet" href="readme.css">
+<script>
+  var dark = new URLSearchParams(location.search).get("theme") === "dark";
+  if (dark) document.documentElement.dataset.theme = "dark";
+</script>
+<style>
+  body { width: 960px; height: 730px; display: flex; justify-content: center; gap: 44px; padding-top: 30px; }
+  figure { margin: 0; width: 272px; display: flex; flex-direction: column; align-items: center; }
+  .device { --w: 268px; }
+  figcaption { margin-top: 30px; width: 100%; text-align: center; }
+  .app { font: 600 17px/22px var(--font); letter-spacing: -0.43px; }
+  .app span { color: var(--ink-2); font-weight: 500; }
+  .prompt { margin: 8px auto 0; max-width: 250px; font: 400 14px/20px var(--font); color: var(--ink-2); letter-spacing: -0.15px; }
+  .dot { display: inline-block; width: 8px; height: 8px; border-radius: 4px; margin-right: 6px; vertical-align: 1px; }
+</style>
+</head>
+<body>
+  <figure>
+    <div class="device"><img id="a" alt=""></div>
+    <figcaption><div class="app"><i class="dot" style="background:var(--lime)"></i>Ripple <span>· Today</span></div>
+      <p class="prompt">“Design the Today screen for my habit app. Check habits off fast and see the streak.”</p></figcaption>
+  </figure>
+  <figure>
+    <div class="device"><img id="b" alt=""></div>
+    <figcaption><div class="app"><i class="dot" style="background:var(--orange)"></i>Bean There <span>· Checkout</span></div>
+      <p class="prompt">“Design the cart and checkout for my coffee pickup app.”</p></figcaption>
+  </figure>
+  <figure>
+    <div class="device"><img id="c" alt=""></div>
+    <figcaption><div class="app"><i class="dot" style="background:var(--blue)"></i>Trips <span>· Lisbon</span></div>
+      <p class="prompt">“A 5-day Lisbon trip with flights and a day-by-day itinerary.”</p></figcaption>
+  </figure>
+<script>
+  var t = dark ? "dark" : "light";
+  document.getElementById("a").src = "../screens/habit-" + t + ".png";
+  document.getElementById("b").src = "../screens/checkout-" + t + ".png";
+  document.getElementById("c").src = "../screens/trip-" + t + ".png";
+</script>
+</body>
+</html>

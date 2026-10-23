@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Hero</title>
+<link rel="stylesheet" href="readme.css">
+<script>
+  var dark = new URLSearchParams(location.search).get("theme") === "dark";
+  if (dark) document.documentElement.dataset.theme = "dark";
+</script>
+<style>
+  body { width: 960px; height: 600px; position: relative; }
+  .glow { position: absolute; left: 50%; top: 250px; width: 900px; height: 520px; transform: translateX(-50%);
+          background: radial-gradient(closest-side at 30% 55%, color-mix(in srgb, var(--orange) 40%, transparent), transparent),
+                      radial-gradient(closest-side at 50% 45%, color-mix(in srgb, var(--lime) 45%, transparent), transparent),
+                      radial-gradient(closest-side at 70% 55%, color-mix(in srgb, var(--blue) 40%, transparent), transparent);
+          filter: blur(40px); opacity: .55; }
+  :root[data-theme="dark"] .glow { opacity: .45; }
+  header { position: relative; text-align: center; padding-top: 54px; }
+  .eyebrow { display: inline-flex; align-items: center; gap: 8px; height: 30px; padding: 0 14px; border-radius: 15px;
+             background: var(--tile); color: var(--ink-2); font: 600 13px/1 var(--font); letter-spacing: -0.08px; }
+  .eyebrow b { color: var(--ink); font-weight: 600; }
+  .eyebrow i { width: 6px; height: 6px; border-radius: 3px; background: var(--lime); box-shadow: 0 0 8px var(--lime); }
+  h1 { margin: 18px 0 0; font: 700 64px/1.05 var(--font); letter-spacing: -2.2px; }
+  p.sub { margin: 12px 0 0; font: 500 24px/1.25 var(--font); letter-spacing: -0.5px; color: var(--ink-2); }
+  .phones { position: absolute; left: 0; right: 0; top: 268px; display: flex; justify-content: center; align-items: flex-start; gap: 40px; }
+  .phones .device:nth-child(1), .phones .device:nth-child(3) { --w: 236px; margin-top: 46px; }
+  .phones .device:nth-child(2) { --w: 262px; }
+  .fade { position: absolute; left: 0; right: 0; bottom: 0; height: 120px;
+          background: linear-gradient(to bottom, transparent, var(--page)); }
+</style>
+</head>
+<body>
+  <div class="glow"></div>
+  <header>
+    <span class="eyebrow"><i></i><b>Claude Skill</b>iOS 26 · Liquid Glass</span>
+    <h1>iOS App <span class="gradient-text">Design</span></h1>
+    <p class="sub">Native iPhone screens, designed by Claude.</p>
+  </header>
+  <div class="phones">
+    <div class="device"><img id="a" alt=""></div>
+    <div class="device"><img id="b" alt=""></div>
+    <div class="device"><img id="c" alt=""></div>
+  </div>
+  <div class="fade"></div>
+<script>
+  var t = dark ? "dark" : "light";
+  document.getElementById("a").src = "../screens/checkout-" + t + ".png";
+  document.getElementById("b").src = "../screens/habit-dark.png";
+  document.getElementById("c").src = "../screens/trip-" + t + ".png";
+</script>
+</body>
+</html>

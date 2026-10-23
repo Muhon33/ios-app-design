@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Trips — Lisbon</title>
+<link rel="stylesheet" href="../../../assets/ios.css">
+<script>
+  (function () {
+    var q = new URLSearchParams(location.search);
+    if (q.get("theme") === "dark") document.documentElement.dataset.theme = "dark";
+    if (q.get("theme") === "light") delete document.documentElement.dataset.theme;
+    if (q.has("bare")) document.documentElement.classList.add("is-bare");
+  })();
+</script>
+<style>
+  :root { --accent: #2F80FF; }
+  .hero { height: 318px; }
+  .hero svg { width: 100%; height: 100%; display: block; }
+  .flight { display: flex; align-items: center; justify-content: space-between; }
+  .code { font: 700 28px/34px var(--font-rounded); letter-spacing: 0.3px; }
+  .flight .mid { flex: 1; display: flex; align-items: center; gap: 6px; margin: 0 12px; color: var(--label-3); }
+  .flight .mid::before, .flight .mid::after { content: ""; flex: 1; height: 1.5px; background: var(--fill); border-radius: 1px; }
+  .flight .mid svg { width: 18px; height: 18px; color: var(--accent); transform: rotate(45deg); }
+  .day-dot { width: 36px; height: 36px; border-radius: 18px; flex: none; display: grid; place-items: center;
+             background: var(--fill-3); font: 700 15px/1 var(--font-rounded); font-variant-numeric: tabular-nums; }
+  .day-dot.on { background: var(--accent); color: #fff; }
+  .list-body.days .row + .row::before { --sep-inset: 68px; }
+  .meta { display: flex; align-items: center; gap: 10px; }
+</style>
+</head>
+<body class="board">
+
+<div class="frame-wrap">
+  <p class="board-label">01 · Trip Detail</p>
+  <div class="iphone grouped">
+
+    <main class="screen">
+      <div class="hero">
+        <svg viewBox="0 0 402 318" preserveAspectRatio="xMidYMid slice">
+          <defs>
+            <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0" stop-color="#2B3A67"/><stop offset=".45" stop-color="#E86A5C"/><stop offset=".8" stop-color="#FFC27A"/>
+            </linearGradient>
+            <linearGradient id="sea" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#F7A266"/><stop offset="1" stop-color="#5E4A7A"/></linearGradient>
+            <linearGradient id="shade" x1="0" y1="0" x2="0" y2="1"><stop offset=".55" stop-color="#000" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity=".45"/></linearGradient>
+          </defs>
+          <rect width="402" height="318" fill="url(#sky)"/>
+          <circle cx="292" cy="196" r="44" fill="#FFE2A8" opacity=".95"/>
+          <rect y="226" width="402" height="92" fill="url(#sea)"/>
+          <!-- 25 de Abril bridge -->
+          <g stroke="#3B2340" stroke-width="2.5" fill="none" opacity=".75">
+            <path d="M210 230 L210 150 M330 230 L330 150"/>
+            <path d="M150 214 Q210 150 270 205 Q330 150 402 210"/>
+            <path d="M140 222 H402" stroke-width="4"/>
+          </g>
+          <!-- hillside rooftops -->
+          <path fill="#7A3B4F" d="M0 250 L0 196 L18 196 L18 184 L34 176 L50 184 L50 200 L66 200 L66 172 L74 160 L82 172 L82 206 L104 206 L104 190 L122 182 L140 190 L140 216 L160 216 L160 228 L180 228 L180 250 Z"/>
+          <path fill="#5A2A43" d="M0 318 L0 236 L26 236 L26 222 L48 214 L70 222 L70 240 L96 240 L96 226 L112 226 L112 212 L120 204 L128 212 L128 246 L156 246 L156 236 L182 232 L208 240 L208 262 L240 262 L240 318 Z"/>
+          <g fill="#FFD9A0" opacity=".9">
+            <rect x="34" y="228" width="5" height="7" rx="1"/><rect x="54" y="226" width="5" height="7" rx="1"/><rect x="104" y="232" width="5" height="7" rx="1"/>
+            <rect x="166" y="244" width="5" height="7" rx="1"/><rect x="186" y="246" width="5" height="7" rx="1"/><rect x="72" y="190" width="4" height="6" rx="1"/>
+          </g>
+          <!-- tram 28 -->
+          <g transform="translate(230 262)">
+            <rect x="0" y="0" width="92" height="40" rx="9" fill="#FFC21A"/>
+            <rect x="0" y="27" width="92" height="13" rx="0" fill="#F2EBDD"/>
+            <g fill="#3B2340" opacity=".85"><rect x="8" y="7" width="14" height="14" rx="3"/><rect x="28" y="7" width="14" height="14" rx="3"/><rect x="48" y="7" width="14" height="14" rx="3"/><rect x="68" y="7" width="16" height="14" rx="3"/></g>
+            <circle cx="20" cy="42" r="5" fill="#2A1A2E"/><circle cx="72" cy="42" r="5" fill="#2A1A2E"/>
+            <path d="M46 0 L58 -26" stroke="#2A1A2E" stroke-width="2"/>
+          </g>
+          <rect width="402" height="318" fill="url(#shade)"/>
+        </svg>
+      </div>
+
+      <div class="pad mt4 stack gap1">
+        <h1 class="t-large-title" style="margin:0">Lisbon</h1>
+        <div class="meta"><span class="t-subhead c-2">Oct 30 – Nov 3 · 5 days</span>
+          <span class="avatar-stack" style="--bg: var(--bg-grouped)"><span class="avatar sm" style="background:#FFD7C2;color:#9A3B12">MR</span><span class="avatar sm" style="background:#CFE0FF;color:#1E4FB8;margin-left:-6px">AL</span></span></div>
+      </div>
+
+      <div class="pad mt4"><div class="segmented"><span class="on">Itinerary</span><span>Bookings</span><span>Notes</span></div></div>
+
+      <div class="list-header">Flight</div>
+      <div class="list"><div class="list-body"><div class="card-pad stack gap2">
+        <div class="flight"><span class="code">JFK</span><span class="mid"><i data-lucide="plane"></i></span><span class="code">LIS</span></div>
+        <div class="hstack between t-subhead c-2"><span>Thu 7:25 PM</span><span>TAP 202 · 6h 50m</span><span>Fri 7:15 AM</span></div>
+      </div></div></div>
+
+      <div class="list-header">Days</div>
+      <div class="list">
+        <div class="list-body days">
+          <a class="row"><span class="day-dot on">1</span><span class="row-text"><span class="t-headline">Alfama &amp; Castelo</span><span class="row-sub">Tram 28 · Miradouro de Santa Luzia</span></span>
+            <svg class="chevron" viewBox="0 0 9 15"><path d="M1.5 1.5 7.5 7.5 1.5 13.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+          <a class="row"><span class="day-dot">2</span><span class="row-text"><span class="t-headline">Belém</span><span class="row-sub">Jerónimos · Pastéis de Belém</span></span>
+            <svg class="chevron" viewBox="0 0 9 15"><path d="M1.5 1.5 7.5 7.5 1.5 13.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+          <a class="row"><span class="day-dot">3</span><span class="row-text"><span class="t-headline">Sintra day trip</span><span class="row-sub">Pena Palace · 10:10 AM train</span></span>
+            <svg class="chevron" viewBox="0 0 9 15"><path d="M1.5 1.5 7.5 7.5 1.5 13.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        </div>
+      </div>
+    </main>
+
+    <div class="edge-bottom"></div>
+
+    <nav class="nav">
+      <span class="glass-btn glass"><i data-lucide="chevron-left"></i></span>
+      <div class="nav-group glass"><span class="glass-btn"><i data-lucide="share"></i></span><span class="glass-btn"><i data-lucide="ellipsis"></i></span></div>
+    </nav>
+
+    <div class="tab-bar-wrap">
+      <div class="tab-bar glass">
+        <span class="tab active filled"><i data-lucide="plane"></i>Trips</span>
+        <span class="tab"><i data-lucide="compass"></i>Explore</span>
+        <span class="tab"><i data-lucide="bookmark"></i>Saved</span>
+        <span class="tab"><i data-lucide="user-round"></i>Profile</span>
+      </div>
+    </div>
+
+    <div class="status-bar light-content">
+      <span>9:41</span>
+      <span class="sb-icons">
+        <svg width="19" height="12" viewBox="0 0 19 12"><rect x="0" y="7.5" width="3.2" height="4.5" rx="1"/><rect x="5.2" y="5" width="3.2" height="7" rx="1"/><rect x="10.4" y="2.5" width="3.2" height="9.5" rx="1"/><rect x="15.6" y="0" width="3.2" height="12" rx="1"/></svg>
+        <svg width="17" height="12" viewBox="0 0 17 12"><path d="M8.5 2.4c2.3 0 4.4.9 6 2.4l1.2-1.2A10.2 10.2 0 0 0 8.5.7 10.2 10.2 0 0 0 1.3 3.6l1.2 1.2a8.5 8.5 0 0 1 6-2.4Zm0 3.4c1.4 0 2.6.5 3.6 1.4l1.2-1.2a6.8 6.8 0 0 0-9.6 0l1.2 1.2c1-.9 2.2-1.4 3.6-1.4Zm0 3.4c.5 0 1 .2 1.3.5L8.5 11 7.2 9.7c.3-.3.8-.5 1.3-.5Z"/></svg>
+        <svg width="27" height="13" viewBox="0 0 27 13"><rect x=".5" y=".5" width="23" height="12" rx="3.8" fill="none" stroke="currentColor" opacity=".4"/><rect x="2" y="2" width="20" height="9" rx="2.5"/><path d="M25 4.5v4c.8-.3 1.3-1.1 1.3-2s-.5-1.7-1.3-2Z" opacity=".4"/></svg>
+      </span>
+    </div>
+    <div class="island"></div>
+    <div class="home-indicator"></div>
+  </div>
+</div>
+
+<script src="https://unpkg.com/lucide@0.469.0/dist/umd/lucide.min.js"></script>
+<script>
+  if (window.lucide) lucide.createIcons();
+  if (document.documentElement.classList.contains("is-bare")) document.body.className = "bare";
+</script>
+</body>
+</html>
